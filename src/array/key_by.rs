@@ -30,7 +30,7 @@ use std::hash::Hash;
 /// let by_length = key_by(people, |name| name.len());
 /// // Results in: {5: "Alice", 3: "Bob", 7: "Charlie"}
 /// ```
-pub fn key_by<T, K, F>(items: impl IntoIterator<Item = T>, f: F) -> HashMap<K, T>
+pub fn key_by<T, K, F>(items: impl IntoIterator<Item = T>, key_resolver: F) -> HashMap<K, T>
 where
     K: Hash + Eq,
     F: Fn(&T) -> K,
@@ -39,7 +39,7 @@ where
         .into_iter()
         .map(|item| {
             // Apply the key resolver function to get the key for this item
-            let key = f(&item);
+            let key = key_resolver(&item);
             (key, item)
         })
         .collect()
