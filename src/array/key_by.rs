@@ -147,4 +147,30 @@ mod tests {
             ])
         );
     }
+
+    #[test]
+    fn test_key_by_ext() {
+        let users = create_users();
+        let user_map = users.into_iter().key_by(|user| user.id);
+        assert_eq!(
+            user_map,
+            HashMap::from([
+                (
+                    1,
+                    User {
+                        id: 1,
+                        name: "Alice"
+                    }
+                ),
+                (2, User { id: 2, name: "Bob" }),
+                (
+                    3,
+                    User {
+                        id: 3,
+                        name: "Charlie"
+                    }
+                )
+            ])
+        );
+    }
 }
