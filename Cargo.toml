@@ -1,0 +1,15 @@
+[package]
+name = "rust_toolkit"
+version = "0.1.0"
+edition = "2024"
+description = "A collection of utility functions inspired by es-toolkit"
+license = "MIT"
+repository = "https://github.com/changchanghwang/rust_toolkit"
+keywords = ["utilities", "toolkit", "helpers"]
+categories = ["data-structures", "algorithms"]
+
+[lib]
+name = "rust_toolkit"
+path = "src/lib.rs"
+
+[dependencies]
