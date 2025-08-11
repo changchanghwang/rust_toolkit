@@ -102,14 +102,7 @@ pub trait GroupByExt: Iterator {
         K: Hash + Eq,
         F: Fn(&Self::Item) -> K,
     {
-        let mut map = HashMap::new();
-        for item in self {
-            // Apply the key resolver function to determine which group this item belongs to
-            let key = key_resolver(&item);
-            // Insert the item into the appropriate group, creating a new vector if needed
-            map.entry(key).or_insert(vec![]).push(item);
-        }
-        map
+        group_by(self, key_resolver)
     }
 }
 
