@@ -83,12 +83,7 @@ pub trait KeyByExt: Iterator {
         K: Hash + Eq,
         F: Fn(&Self::Item) -> K,
     {
-        self.map(|item| {
-            // Apply the key resolver function to derive the key for this item
-            let key = key_resolver(&item);
-            (key, item)
-        })
-        .collect()
+        key_by(self, key_resolver)
     }
 }
 

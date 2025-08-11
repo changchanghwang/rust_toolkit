@@ -80,21 +80,7 @@ pub trait ChunkExt: Iterator {
     where
         Self: Sized,
     {
-        assert!(size > 0, "size must be greater than 0");
-
-        let mut chunks: Vec<Vec<Self::Item>> = Vec::new();
-
-        let mut iter = self.into_iter();
-
-        loop {
-            let part: Vec<Self::Item> = iter.by_ref().take(size).collect();
-            if part.is_empty() {
-                break;
-            }
-            chunks.push(part);
-        }
-
-        chunks
+        chunk(self, size)
     }
 }
 
